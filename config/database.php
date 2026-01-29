@@ -59,14 +59,16 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                // Pastikan path absolut ke folder /var/task/user/certs/...
-                PDO::MYSQL_ATTR_SSL_CA => base_path('certs/' . env('MYSQL_ATTR_SSL_CA', 'isrgrootx1.pem')),
+                // -----------------------------------------------------------
+                // FIX VERCEL: Gunakan path absolut sertifikat bawaan Linux
+                // -----------------------------------------------------------
+                PDO::MYSQL_ATTR_SSL_CA => '/etc/ssl/certs/ca-certificates.crt',
                 
-                // Non-aktifkan verifikasi nama server (Penting untuk TiDB Serverless)
+                // Matikan verifikasi nama server (Wajib untuk TiDB Serverless)
                 PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
             ]) : [],
         ],
-
+        
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
