@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Halaman Public (Landing Page)
+Route::get('/', [ProjectController::class, 'home'])->name('home');
+
+// Halaman Admin (CRUD Resource)
+Route::resource('projects', ProjectController::class);
