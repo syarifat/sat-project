@@ -211,7 +211,7 @@
             </div>
             <p class="text-slate-500 text-sm">
                 &copy; 2026 SAT Project. All rights reserved. <br>
-                <span class="text-xs text-slate-400">Kediri, East Java, Indonesia</span>
+                <span class="text-xs text-slate-400">Tulungagung, East Java, Indonesia</span>
             </p>
         </div>
     </footer>
