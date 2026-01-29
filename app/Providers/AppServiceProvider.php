@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // 1. Paksa HTTPS saat di Production (PENTING)
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+        
+        Model::preventLazyLoading(! $this->app->isProduction());
     }
 }
