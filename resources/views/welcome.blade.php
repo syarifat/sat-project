@@ -37,7 +37,7 @@
                     </span>
                 </div>
                 <div class="flex items-center">
-                    <a href="#portfolio" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Portfolio</a>
+                    <a href="https://portfolio.sat-project.me" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Portfolio</a>
                 </div>
             </div>
         </div>
