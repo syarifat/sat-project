@@ -25,7 +25,7 @@
                 <a href="#services" class="px-8 py-3.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white font-bold hover:bg-slate-800 dark:hover:bg-blue-700 transition-all shadow-lg shadow-slate-900/30 dark:shadow-blue-600/30">
                     Jelajahi Layanan
                 </a>
-                <a href="https://wa.me/6281234567890" target="_blank" class="px-8 py-3.5 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+                <a href="https://wa.me/6287859017087" target="_blank" class="px-8 py-3.5 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-green-500 text-lg"></i> Hubungi Kami
                 </a>
             </div>
