@@ -1,36 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectController;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\PageController;    // Controller untuk Halaman Depan
+use App\Http\Controllers\ProjectController; // Controller untuk Admin CRUD
 
-// Halaman Public (Landing Page)
-Route::get('/', [ProjectController::class, 'home'])->name('home');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-// Halaman Admin (CRUD Resource)
-Route::resource('projects', ProjectController::class);
-
-Route::get('/debug-db', function () {
-    try {
-        // 1. Cek Koneksi DB
-        DB::connection()->getPdo();
-        
-        // 2. Cek List Tabel
-        $tables = DB::select('SHOW TABLES');
-        
-        return response()->json([
-            'status' => 'OK',
-            'message' => 'Koneksi Database Berhasil! 🎉',
-            'database_name' => DB::connection()->getDatabaseName(),
-            'tables_found' => count($tables),
-            'ssl_ca_path_config' => config('database.connections.mysql.options.' . PDO::MYSQL_ATTR_SSL_CA),
-            'file_exists' => file_exists(config('database.connections.mysql.options.' . PDO::MYSQL_ATTR_SSL_CA)) ? 'YES' : 'NO'
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'ERROR',
-            'message' => $e->getMessage(), // <--- Ini pesan error aslinya
-            'ssl_config' => config('database.connections.mysql.options'),
-        ], 500);
-    }
+// --- PUBLIC ROUTES (Halaman Depan) ---
+Route::controller(PageController::class)->group(function () {
+    // Landing Page
+    Route::get('/', 'home')->name('home');
+    
+    // Halaman List Produk (Portfolio)
+    Route::get('/products', 'products')->name('products');
+    
+    // Halaman Layanan Joki
+    Route::get('/services/joki', 'joki')->name('services.joki');
+    
+    // Halaman Layanan Network
+    Route::get('/services/network', 'network')->name('services.network');
 });
+
+// --- ADMIN ROUTES (Kelola Data) ---
+// Route ini digunakan untuk menambah/edit/hapus project di database
+// Aksesnya nanti via: /projects
+Route::resource('projects', ProjectController::class);
