@@ -3,97 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project - Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Edit Project: {{ $project->name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { font-family: 'Outfit', sans-serif; }</style>
 </head>
-<body class="bg-gray-100 p-8">
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-<div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
-    <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Edit Project</h2>
-        <a href="{{ route('projects.index') }}" class="text-sm text-gray-500 hover:text-indigo-600">Kembali ke List</a>
-    </div>
-
-    <form action="{{ route('projects.update', $project->id) }}" method="POST">
-        @csrf
-        @method('PUT') <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2">Nama Sistem</label>
-                <input type="text" name="name" 
-                       value="{{ old('name', $project->name) }}"
-                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <div class="mb-6 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-sm text-slate-500">
+                <a href="{{ route('admin.projects.index') }}" class="hover:text-indigo-600"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+                <span>/</span>
+                <span class="text-slate-800 font-bold">Edit Project</span>
             </div>
-            <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
-                <input type="text" name="category" 
-                       value="{{ old('category', $project->category) }}"
-                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            </div>
+            
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Hapus project ini?');">
+                @csrf @method('DELETE')
+                <button type="submit" class="text-red-500 hover:text-red-700 text-sm font-bold bg-red-50 px-3 py-1.5 rounded-lg border border-red-100 transition-colors">
+                    <i class="fa-solid fa-trash mr-1"></i> Hapus
+                </button>
+            </form>
         </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">URL Gambar (Image Link)</label>
-            <div class="flex gap-4 items-start">
-                <div class="flex-grow">
-                    <input type="url" name="image" 
-                           value="{{ old('image', $project->image) }}"
-                           placeholder="https://..."
-                           class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <p class="text-xs text-gray-500 mt-1">Gunakan link gambar dari Unsplash atau hosting lain.</p>
-                </div>
-                @if($project->image)
-                    <div class="w-20 h-20 flex-shrink-0">
-                        <img src="{{ $project->image }}" alt="Preview" class="w-full h-full object-cover rounded border border-gray-300">
+        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-slate-800 border-b border-slate-100 pb-2">Edit Informasi</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Sistem / Project</label>
+                                <input type="text" name="name" required value="{{ old('name', $project->name) }}"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Kategori</label>
+                                    <input type="text" name="category" required value="{{ old('category', $project->category) }}"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Tech Stack</label>
+                                    <input type="text" name="tech_stack" value="{{ old('tech_stack', is_array($project->tech_stack) ? implode(', ', $project->tech_stack) : $project->tech_stack) }}"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Lengkap</label>
+                                <textarea name="description" rows="5" required
+                                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all">{{ old('description', $project->description) }}</textarea>
+                            </div>
+                        </div>
                     </div>
-                @endif
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-slate-800 border-b border-slate-100 pb-2">Akses & Demo</h3>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Link Demo URL</label>
+                            <div class="flex">
+                                <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-slate-300 bg-slate-50 text-slate-500 text-sm">
+                                    <i class="fa-solid fa-link"></i>
+                                </span>
+                                <input type="url" name="demo_url" value="{{ old('demo_url', $project->demo_url) }}"
+                                    class="w-full px-4 py-2.5 rounded-r-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Username</label>
+                                <input type="text" name="demo_user" value="{{ old('demo_user', $project->demo_user) }}"
+                                    class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 outline-none transition-all text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Password</label>
+                                <input type="text" name="demo_pass" value="{{ old('demo_pass', $project->demo_pass) }}"
+                                    class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 outline-none transition-all text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-slate-800">Visual Project</h3>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">URL Gambar</label>
+                            <input type="url" name="image" value="{{ old('image', $project->image) }}"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all text-sm">
+                        </div>
+
+                        @if($project->image)
+                            <div class="rounded-xl overflow-hidden border border-slate-200 relative group">
+                                <img src="{{ $project->image }}" class="w-full h-40 object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-xs font-bold">Preview Saat Ini</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 sticky top-6">
+                        <h3 class="font-bold text-indigo-900 mb-2">Simpan Perubahan?</h3>
+                        <p class="text-indigo-700/80 text-sm mb-4">Data akan langsung terupdate di halaman portfolio.</p>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/30 transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i> Update Project
+                        </button>
+                        <a href="{{ route('admin.projects.index') }}" class="block text-center mt-3 text-sm text-indigo-600 font-semibold hover:underline">Batal</a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Tech Stack</label>
-            <input type="text" name="tech_stack" 
-                   value="{{ old('tech_stack', is_array($project->tech_stack) ? implode(', ', $project->tech_stack) : $project->tech_stack) }}"
-                   placeholder="Contoh: Laravel, MySQL, Tailwind (Pisahkan dengan koma)"
-                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            <p class="text-xs text-gray-500 mt-1">Pisahkan teknologi dengan koma (,)</p>
-        </div>
-
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi Singkat</label>
-            <textarea name="description" rows="4" 
-                      class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description', $project->description) }}</textarea>
-        </div>
-
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Link Demo URL</label>
-            <input type="url" name="demo_url" 
-                   value="{{ old('demo_url', $project->demo_url) }}"
-                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <div>
-                <label class="block text-gray-700 text-xs font-bold mb-1 uppercase">Demo Username/Email</label>
-                <input type="text" name="demo_user" 
-                       value="{{ old('demo_user', $project->demo_user) }}"
-                       class="w-full px-3 py-2 border bg-white rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            </div>
-            <div>
-                <label class="block text-gray-700 text-xs font-bold mb-1 uppercase">Demo Password</label>
-                <input type="text" name="demo_pass" 
-                       value="{{ old('demo_pass', $project->demo_pass) }}"
-                       class="w-full px-3 py-2 border bg-white rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            </div>
-        </div>
-
-        <div class="flex items-center justify-end gap-3">
-            <a href="{{ route('projects.index') }}" class="text-gray-500 hover:text-gray-800 font-semibold">Batal</a>
-            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
-                Update Project
-            </button>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 </body>
 </html>
