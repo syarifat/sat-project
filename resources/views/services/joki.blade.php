@@ -107,7 +107,7 @@
                     </div>
                     <div class="text-center">
                         <span class="block text-xs text-slate-400 dark:text-slate-500 uppercase font-bold mb-1">Mulai Dari</span>
-                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp 50.000</span>
+                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp -</span>
                     </div>
                 </div>
                 
@@ -118,7 +118,7 @@
                     </div>
                     <div class="text-center">
                         <span class="block text-xs text-slate-400 dark:text-slate-500 uppercase font-bold mb-1">Mulai Dari</span>
-                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp 300.000</span>
+                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp -</span>
                     </div>
                 </div>
 
@@ -129,14 +129,14 @@
                     </div>
                     <div class="text-center">
                         <span class="block text-xs text-slate-400 dark:text-slate-500 uppercase font-bold mb-1">Mulai Dari</span>
-                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp 1.500.000</span>
+                        <span class="text-xl font-extrabold text-purple-600 dark:text-purple-400">Rp -</span>
                     </div>
                 </div>
             </div>
 
             <div class="mt-10 text-center">
                 <p class="text-slate-500 dark:text-slate-400 mb-4 text-sm">Butuh penawaran khusus? Hubungi kami langsung.</p>
-                <a href="https://wa.me/6281234567890?text=Halo%20SAT%20Project,%20mau%20konsultasi%20tugas%20coding..." target="_blank" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-green-500/20 hover:-translate-y-1">
+                <a href="https://wa.me/6287859017087?text=Halo%20SAT%20Project,%20mau%20konsultasi%20tugas%20coding..." target="_blank" class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-green-500/20 hover:-translate-y-1">
                     <i class="fa-brands fa-whatsapp text-2xl mr-3"></i> Konsultasi via WhatsApp
                 </a>
             </div>

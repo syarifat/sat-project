@@ -142,7 +142,7 @@
                     Konsultasikan kebutuhan Anda sekarang. Gratis diskusi untuk menentukan solusi terbaik bagi masalah Anda.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="https://wa.me/6281234567890" target="_blank" class="px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20">
+                    <a href="https://wa.me/6287859017087" target="_blank" class="px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20">
                         <i class="fa-brands fa-whatsapp text-xl"></i> Chat WhatsApp
                     </a>
                     <a href="{{ route('products') }}" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur text-white border border-white/20 rounded-xl font-bold transition-all">

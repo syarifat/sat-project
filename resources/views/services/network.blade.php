@@ -106,7 +106,7 @@
                 <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Butuh Teknisi Sekarang?</h2>
                 <p class="text-slate-300 mb-8 text-lg max-w-2xl mx-auto">Konsultasikan kebutuhan jaringan atau hardware Anda sekarang. Kami melayani survei gratis untuk area terdekat.</p>
                 
-                <a href="https://wa.me/6281234567890?text=Halo%20SAT%20Project,%20saya%20mau%20tanya%20jasa%20jaringan..." target="_blank" class="inline-flex items-center bg-white dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-blue-50 dark:hover:bg-slate-700 px-8 py-4 rounded-xl font-bold transition-all hover:scale-105">
+                <a href="https://wa.me/6287859017087?text=Halo%20SAT%20Project,%20saya%20mau%20tanya%20jasa%20jaringan..." target="_blank" class="inline-flex items-center bg-white dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-blue-50 dark:hover:bg-slate-700 px-8 py-4 rounded-xl font-bold transition-all hover:scale-105">
                     <i class="fa-brands fa-whatsapp text-2xl mr-3 text-green-600 dark:text-green-500"></i> Hubungi Teknisi
                 </a>
             </div>
