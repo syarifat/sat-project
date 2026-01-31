@@ -5,26 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class AdminController extends Controller
 {
-    // Halaman Depan (Public Landing Page)
-    public function home()
-    {
-        $projects = Project::latest()->get();
-        return view('welcome', compact('projects'));
-    }
-
     // Tampilan List Admin (Read)
     public function index()
     {
         $projects = Project::latest()->get();
-        return view('projects.index', compact('projects'));
+        // PERBAIKAN: Arahkan ke folder views/admin/index.blade.php
+        return view('admin.index', compact('projects'));
     }
 
     // Tampilan Form Tambah (Create)
     public function create()
     {
-        return view('projects.create');
+        // PERBAIKAN: Arahkan ke folder views/admin/create.blade.php
+        return view('admin.create');
     }
 
     // Proses Simpan Data (Store)
@@ -38,7 +33,7 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
-        // Konversi string "Laravel, PHP" menjadi Array ["Laravel", "PHP"]
+        // Konversi string "Laravel, PHP" menjadi Array
         if ($request->filled('tech_stack')) {
             $data['tech_stack'] = array_map('trim', explode(',', $request->tech_stack));
         } else {
@@ -47,13 +42,15 @@ class ProjectController extends Controller
 
         Project::create($data);
 
-        return redirect()->route('projects.index')->with('success', 'Project berhasil ditambahkan!');
+        // Redirect ke route admin index
+        return redirect()->route('admin.projects.index')->with('success', 'Project berhasil ditambahkan!');
     }
 
     // Tampilan Form Edit (Edit)
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        // PERBAIKAN: Arahkan ke folder views/admin/edit.blade.php
+        return view('admin.edit', compact('project'));
     }
 
     // Proses Update Data (Update)
@@ -67,9 +64,7 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
-        // Konversi string "Laravel, PHP" menjadi Array ["Laravel", "PHP"]
         if ($request->filled('tech_stack')) {
-            // Cek jika input berupa string (dari form), baru di-explode
             if (is_string($request->tech_stack)) {
                 $data['tech_stack'] = array_map('trim', explode(',', $request->tech_stack));
             }
@@ -79,13 +74,13 @@ class ProjectController extends Controller
 
         $project->update($data);
 
-        return redirect()->route('projects.index')->with('success', 'Project berhasil diupdate!');
+        return redirect()->route('admin.projects.index')->with('success', 'Project berhasil diupdate!');
     }
 
     // Proses Hapus (Delete)
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index')->with('success', 'Project dihapus.');
+        return redirect()->route('admin.projects.index')->with('success', 'Project dihapus.');
     }
 }

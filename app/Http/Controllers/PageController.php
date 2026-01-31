@@ -15,18 +15,17 @@ class PageController extends Controller
     public function products()
     {
         $projects = Project::latest()->get();
-        return view('services.products', compact('projects'));
+        // PERBAIKAN: Sesuai screenshot, nama filenya 'product.blade.php' (tanpa s)
+        return view('services.product', compact('projects'));
     }
 
     public function joki()
     {
-        // Data langsung di view
         return view('services.joki');
     }
 
     public function network()
     {
-        // Data langsung di view
         return view('services.network');
     }
 }
