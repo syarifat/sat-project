@@ -122,9 +122,12 @@
                 
                 <div class="bg-slate-100 dark:bg-slate-800 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden transition-colors">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10"></div>
-                    <div class="text-center relative z-10">
-                        <i class="fa-solid fa-rocket text-8xl text-blue-200 dark:text-slate-600 mb-4 animate-bounce"></i>
-                        <p class="font-bold text-slate-400 dark:text-slate-500">SAT Project Ecosystem</p>
+                    
+                    <div class="text-center relative z-10 flex flex-col items-center">
+                        <img src="{{ asset('favicon.svg') }}" 
+                            alt="SAT Project Logo" 
+                            class="w-32 h-32 mb-6 grayscale opacity-50 dark:invert animate-bounce transition-all duration-500">
+                        <p class="font-bold text-slate-400 dark:text-slate-500 text-lg">SAT Project Ecosystem</p>
                     </div>
                 </div>
             </div>
