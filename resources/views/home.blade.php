@@ -124,7 +124,7 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10"></div>
                     
                     <div class="text-center relative z-10 flex flex-col items-center">
-                        <img src="{{ asset('favicon1.svg') }}" 
+                        <img src="{{ asset('favicon1.svg?v=1') }}"
                             alt="SAT Project Logo" 
                             class="w-32 h-32 mb-6 grayscale opacity-50 dark:invert animate-bounce transition-all duration-500">
                         <p class="font-bold text-slate-400 dark:text-slate-500 text-lg">SAT Project Ecosystem</p>
