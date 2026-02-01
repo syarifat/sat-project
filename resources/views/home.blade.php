@@ -122,27 +122,24 @@
                 
                 <div class="bg-slate-100 dark:bg-slate-800 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden transition-colors">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10"></div>
-                    
                     <div class="text-center relative z-10 flex flex-col items-center">
-                        
                         <svg xmlns="http://www.w3.org/2000/svg" 
                             viewBox="64 64 384 384" 
                             class="w-32 h-32 mb-6 grayscale opacity-50 dark:invert animate-bounce transition-all duration-500 text-black dark:text-white"
                             fill="none">
-                            
                             <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" 
                                 stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
-                            
                             <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" 
                                 stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
-
                             <circle cx="360" cy="144" r="32" fill="currentColor"/>
                             <circle cx="152" cy="368" r="32" fill="currentColor"/>
                         </svg>
-                            
                         <p class="font-bold text-slate-400 dark:text-slate-500 text-lg">SAT Project Ecosystem</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
     <div class="py-16 px-4">
         <div class="max-w-5xl mx-auto bg-slate-900 dark:bg-slate-800 rounded-3xl p-10 md:p-16 text-center relative overflow-hidden shadow-2xl transition-colors">
