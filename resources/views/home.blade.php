@@ -120,31 +120,34 @@
                     </div>
                 </div>
                 
-                <div class="bg-slate-100 dark:bg-slate-800 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden transition-colors">
+                <div class="bg-slate-100 dark:bg-slate-800 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden transition-colors" style="perspective: 1000px;">
+    
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10"></div>
-                    <div class="text-center relative z-10 flex flex-col items-center">
-                        <div class="relative flex items-center justify-center mb-6">
+                    
+                    <div id="tiltContainer" class="relative z-10 flex flex-col items-center justify-center w-full h-full cursor-pointer group">
+                        
+                        <div id="tiltLogo" class="relative w-40 h-40 flex items-center justify-center transition-transform duration-100 ease-out" style="transform-style: preserve-3d;">
                             
+                            <div class="absolute inset-0 bg-black/20 dark:bg-white/10 rounded-full blur-xl transform translate-y-4 scale-75 transition-all duration-300 group-hover:scale-90 group-hover:blur-2xl"></div>
+
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="64 64 384 384" 
-                                class="absolute w-32 h-32 animate-ping opacity-30 text-blue-500 dark:text-blue-400"
+                                class="relative w-full h-full grayscale opacity-60 dark:invert text-slate-800 dark:text-white drop-shadow-2xl"
                                 fill="none">
                                 <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
                                 <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
                                 <circle cx="360" cy="144" r="32" fill="currentColor"/>
                                 <circle cx="152" cy="368" r="32" fill="currentColor"/>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="64 64 384 384" 
-                                class="relative w-32 h-32 grayscale opacity-50 dark:invert text-black dark:text-white"
-                                fill="none">
-                                <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
-                                <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
-                                <circle cx="360" cy="144" r="32" fill="currentColor"/>
-                                <circle cx="152" cy="368" r="32" fill="currentColor"/>
-                            </svg>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full mix-blend-overlay pointer-events-none"></div>
                         </div>
-                        <p class="font-bold text-slate-400 dark:text-slate-500 text-lg">SAT Project Ecosystem</p>
+
+                        <p class="font-bold text-slate-400 dark:text-slate-500 text-lg mt-8 transform transition-all duration-300 group-hover:translate-y-2 group-hover:text-blue-500 dark:group-hover:text-blue-400">
+                            SAT Project Ecosystem
+                        </p>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -170,4 +173,34 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        const container = document.getElementById('tiltContainer');
+        const logo = document.getElementById('tiltLogo');
+
+        // Saat Mouse Bergerak di area Container
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            
+            // Hitung posisi mouse relatif terhadap tengah container
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Kalkulasi rotasi (Sensitivity: bagi dengan angka lebih besar untuk gerakan lebih halus)
+            const rotateX = ((y - centerY) / 10) * -1; // Invert axis X agar terasa natural
+            const rotateY = (x - centerX) / 10;
+
+            // Terapkan Transformasi
+            logo.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+        });
+
+        // Saat Mouse Keluar (Reset posisi)
+        container.addEventListener('mouseleave', () => {
+            logo.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        });
+    </script>
+    @endpush
 @endsection
