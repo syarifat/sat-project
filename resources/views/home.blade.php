@@ -47,7 +47,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Produk Digital</h3>
                     <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
-                        Kumpulan source code website, sistem IoT, dan aplikasi mobile siap pakai untuk kebutuhan bisnis atau referensi belajar.
+                        Katalog source code website, sistem IoT, dan aplikasi mobile premium. Aset digital berkualitas untuk dikembangkan sesuai kebutuhan bisnis Anda.
                     </p>
                     <span class="text-blue-600 dark:text-blue-400 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
                         Lihat Katalog <i class="fa-solid fa-arrow-right"></i>
@@ -60,7 +60,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Joki Coding</h3>
                     <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
-                        Bantuan pengerjaan tugas kuliah IT, skripsi, error fixing, hingga privat mentoring. Privasi aman, coding rapi.
+                        Mitra teknis untuk penyelesaian tugas pemrograman, Skripsi, dan debugging sistem. Jaminan clean code, privasi terjaga, serta konsultasi gratis untuk pemetaan kebutuhan.
                     </p>
                     <span class="text-purple-600 dark:text-purple-400 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
                         Cek Harga <i class="fa-solid fa-arrow-right"></i>
