@@ -120,33 +120,97 @@
                     </div>
                 </div>
                 
-                <div class="bg-slate-100 dark:bg-slate-800 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden transition-colors" style="perspective: 1000px;">
+                <div id="interactiveCard" class="rounded-3xl h-96 relative overflow-hidden group perspective-1000 cursor-pointer transition-all duration-500 bg-slate-100 dark:bg-slate-800 border-2 border-transparent hover:border-blue-500/30 dark:hover:border-blue-400/30">
     
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10"></div>
-                    
-                    <div id="tiltContainer" class="relative z-10 flex flex-col items-center justify-center w-full h-full cursor-pointer group">
-                        
-                        <div id="tiltLogo" class="relative w-40 h-40 flex items-center justify-center transition-transform duration-100 ease-out" style="transform-style: preserve-3d;">
-                            
-                            <div class="absolute inset-0 bg-black/20 dark:bg-white/10 rounded-full blur-xl transform translate-y-4 scale-75 transition-all duration-300 group-hover:scale-90 group-hover:blur-2xl"></div>
-
+                    <div class="absolute inset-0 opacity-20 transition-all duration-500 group-hover:opacity-40 mix-blend-overlay blur-3xl"
+                        style="background: radial-gradient(circle at center, hsl(var(--hue, 210), 80%, 60%), transparent 70%);">
+                    </div>
+                    <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+                    <div id="tiltContent" class="relative h-full w-full flex flex-col items-center justify-center p-8 transition-all ease-out duration-200"
+                        style="transform-style: preserve-3d;">
+                        <div class="relative w-40 h-40 mb-8 transform transition-all duration-500 group-hover:scale-110 translate-z-12">
+                            <div class="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"
+                                style="background: inherit;"></div>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="64 64 384 384" 
-                                class="relative w-full h-full grayscale opacity-60 dark:invert text-slate-800 dark:text-white drop-shadow-2xl"
+                                class="w-full h-full transition-all duration-500 text-slate-300 dark:text-slate-600 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-tr group-hover:from-blue-500 group-hover:to-cyan-400 dark:group-hover:from-blue-400 dark:group-hover:to-cyan-300"
                                 fill="none">
-                                <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
-                                <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
+                                <path d="M352 144h-96c-44.18 0-80 35.82-80 80 0 44.18 35.82 80 80 80h64c17.67 0 32 14.33 32 32 0 17.67-14.33 32-32 32H160" 
+                                    stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
+                                <path d="M160 368h96c44.18 0 80-35.82 80-80 0-44.18-35.82-80-80-80h-64c-17.67 0-32-14.33-32-32 0-17.67 14.33-32 32-32h160" 
+                                    stroke="currentColor" stroke-width="64" stroke-linecap="round"/>
                                 <circle cx="360" cy="144" r="32" fill="currentColor"/>
                                 <circle cx="152" cy="368" r="32" fill="currentColor"/>
                             </svg>
-                            
-                            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full mix-blend-overlay pointer-events-none"></div>
                         </div>
-
-                        <p class="font-bold text-slate-400 dark:text-slate-500 text-lg mt-8 transform transition-all duration-300 group-hover:translate-y-2 group-hover:text-blue-500 dark:group-hover:text-blue-400">
+                            
+                        <p class="font-bold text-xl text-slate-400 dark:text-slate-500 transition-all duration-500 group-hover:text-slate-800 dark:group-hover:text-white translate-z-6">
                             SAT Project Ecosystem
+                        </p>
+                        <p class="text-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-z-4 mt-2">
+                            Explore the Possibilities
                         </p>
                     </div>
                 </div>
+
+                <style>
+                    .perspective-1000 { perspective: 1000px; }
+                    .translate-z-12 { transform: translateZ(50px); }
+                    .translate-z-6 { transform: translateZ(30px); }
+                    .translate-z-4 { transform: translateZ(20px); }
+                </style>
+
+                @push('scripts')
+                <script>
+                    const card = document.getElementById('interactiveCard');
+                    const content = document.getElementById('tiltContent');
+
+                    let bounds;
+
+                    function rotateToMouse(e) {
+                        bounds = card.getBoundingClientRect();
+                        const mouseX = e.clientX;
+                        const mouseY = e.clientY;
+                        const leftX = mouseX - bounds.x;
+                        const topY = mouseY - bounds.y;
+                        
+                        // Kalkulasi titik tengah
+                        const center = {
+                            x: leftX - bounds.width / 2,
+                            y: topY - bounds.height / 2
+                        }
+                        
+                        // Jarak dari tengah (untuk intensitas efek)
+                        const distance = Math.sqrt(center.x**2 + center.y**2);
+
+                        // 1. LOGIKA TILT (Miring 3D)
+                        // Semakin besar pembagi (20), semakin halus miringnya
+                        card.style.transform = `scale3d(1.02, 1.02, 1.02) rotateX(${center.y / 20}deg) rotateY(${-center.x / 20}deg)`;
+
+                        // 2. LOGIKA GANTI WARNA (Holographic)
+                        // Mengubah variabel --hue CSS berdasarkan posisi X mouse (range 0-360 derajat warna)
+                        const hue = Math.abs(center.x / bounds.width) * 360 + 210; // Base blue + rotasi
+                        card.style.setProperty('--hue', hue);
+                        
+                        // 3. Menggeser posisi gradient background sedikit agar lebih dinamis
+                        content.style.backgroundPosition = `${center.x / 5 + bounds.width / 2}px ${center.y / 5 + bounds.height / 2}px`;
+                    }
+
+                    // Event saat mouse masuk dan bergerak
+                    card.addEventListener('mouseenter', () => {
+                        bounds = card.getBoundingClientRect();
+                        document.addEventListener('mousemove', rotateToMouse);
+                    });
+
+                    // Event saat mouse keluar (Reset ke posisi awal)
+                    card.addEventListener('mouseleave', () => {
+                        document.removeEventListener('mousemove', rotateToMouse);
+                        // Reset semua style
+                        card.style.transform = '';
+                        card.style.removeProperty('--hue');
+                        content.style.backgroundPosition = '';
+                    });
+                </script>
+                @endpush
 
             </div>
         </div>
@@ -173,34 +237,4 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-    <script>
-        const container = document.getElementById('tiltContainer');
-        const logo = document.getElementById('tiltLogo');
-
-        // Saat Mouse Bergerak di area Container
-        container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            
-            // Hitung posisi mouse relatif terhadap tengah container
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Kalkulasi rotasi (Sensitivity: bagi dengan angka lebih besar untuk gerakan lebih halus)
-            const rotateX = ((y - centerY) / 10) * -1; // Invert axis X agar terasa natural
-            const rotateY = (x - centerX) / 10;
-
-            // Terapkan Transformasi
-            logo.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
-        });
-
-        // Saat Mouse Keluar (Reset posisi)
-        container.addEventListener('mouseleave', () => {
-            logo.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-        });
-    </script>
-    @endpush
 @endsection
